@@ -14,6 +14,12 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case ADD_TECH:
+      return {
+        ...state,
+        techs: [...state.techs, action.payload],
+        loading: false
+      };
     case GET_TECHS:
       return {
         ...state,
@@ -24,6 +30,13 @@ export default (state = initialState, action) => {
       return {
         ...state,
         loading: true
+      };
+    case TECHS_ERROR:
+      console.error(action.payload);
+      return {
+        ...state,
+        error: action.payload,
+        loading: false
       };
     default:
       return state;
